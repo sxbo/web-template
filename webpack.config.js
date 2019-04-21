@@ -12,6 +12,12 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.jsx?$/,
+                //不编译node_modules文件夹内的js 
+                exclude: /node_modules/,
+                use: ['babel-loader']
             }
            
         ]

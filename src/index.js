@@ -1,12 +1,7 @@
-import './style.css';
+import React from 'react';
+import {render} from 'react-dom';
 
-class Person {
-    constructor(props){
-        this.name = "xiaobo";
-    }
-}
-;(function(){
-    let person = new Person("adff");
-    console.log(person);
-    document.getElementById("template").innerHTML = "hello word";
-})();
+render(
+    <div>abcl</div>,
+    document.getElementById("template")
+);
