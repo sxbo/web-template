@@ -1,4 +1,12 @@
 {
     "presets": ["@babel/preset-env","@babel/preset-react"],
-    "plugins": ["@babel/plugin-transform-runtime"]
+    "plugins": [
+        // 解决Ie Promise未定义等原生对象，从@babel/runtime-corejs2中引入，但是解决不了string.includes()方法的的错误
+        //要使用 string.includes方法还需引入 @babel/Polify
+        ["@babel/plugin-transform-runtime",
+            {
+                "corejs":2 
+            }
+        ]
+    ]
 }

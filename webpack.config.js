@@ -18,9 +18,26 @@ module.exports = {
                 //不编译node_modules文件夹内的js 
                 exclude: /node_modules/,
                 use: ['babel-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: ['file-loader']
             }
            
         ]
+    },
+    //错误或其他通知消息映射到源码文件
+    devtool: 'source-map',
+	devServer:{
+        //指定加载目录
+		contentBase:'./app',
+		port:3000,
+		open:true,
+        hot:true
     },
 
     plugins:[

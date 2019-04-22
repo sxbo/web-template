@@ -1,0 +1,15 @@
+.button{
+    display: inline-block;
+    padding: 0 10px;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    background: #189db4;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0px 6px 2px #3f4041, 0px 9px 15px #000000b3;
+}
+
+.button:active{
+    box-shadow: 0px 2px 2px #3f4041, 0px 2px 6px #000000e6;
+}
