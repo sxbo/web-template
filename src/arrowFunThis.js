@@ -31,3 +31,18 @@ var obj = {
   }
   
   obj.y();
+
+
+
+  function Person() {
+      this.name = "bob"
+      console.log(this);
+      function say(){
+        console.log(this.name+"-----");
+      }
+      say();
+  }
+
+  //函数直接调用和new 操作，里边的this不同
+  console.log(Person()+"**********");
+  console.log(new Person().name);
