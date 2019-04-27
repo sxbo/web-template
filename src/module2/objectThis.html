@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象中的this</title>
+</head>
+<body>
+    <script>
+
+        var logger = function(log){
+            console.log(log);
+        }
+
+        var a = "global";
+        var obj1 = {
+            a:"obj-a",
+            fn:function(){
+                return a; //global
+            }
+        }
+
+        logger(obj1.fn());
+
+        var obj2 ={
+            a:"obj2-a",
+            b:{
+                c:"obj2-b-c",
+                d:function(){
+                    return a;
+                }
+            },
+        }
+        logger(obj2.b.d()) //global
+
+        var obj3 ={
+            a:"obj3-a",
+            b:{
+                c:"obj3-b-c",
+                d:function(){
+                    console.log(this)
+                }
+            },
+        }
+
+        obj3.b.d(); //this = obj3.b
+        var obj4 ={
+            a:"obj4-a",
+            b:{
+                c:"obj4-b-c",
+                d:obj3.b.d
+            },
+        }
+
+        obj4.b.d();  //obj4.b
+
+        //对象中的this，指向包含this的第一个对象，this是调用时才被确定的；
+
+    </script>
+</body>
+</html>

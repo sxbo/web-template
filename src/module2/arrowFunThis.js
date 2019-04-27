@@ -46,3 +46,4 @@ var obj = {
   //函数直接调用和new 操作，里边的this不同
   console.log(Person()+"**********");
   console.log(new Person().name);
+  //直接调用的this为调用者，new时，this为他本身
