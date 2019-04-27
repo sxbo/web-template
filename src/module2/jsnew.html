@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js new的实现</title>
+</head>
+<body>
+    <script>
+
+        function A (b,c){
+            this.b = b;
+            this.c = c;
+        }
+
+        var a = new A("bb","cc");
+        console.log(a.__proto__  == A.prototype) // true
+        //对象{}有__proto__属性无prototype，函数对象function 有 prototype属性
+        //且 当对象是函数对象new产生时 对象的__proto__指向 function.prototype
+
+
+
+        //new发生的
+        //产生一个新的对象
+        //新对象的__proto__指向原对象的prototype
+        //执行原函数，改变其this为新对象，返回新对象
+        //返回新对象
+
+        function _new(fun){
+            return function (){
+                if(typeof fun !== "function")
+                    throw new Error("error!");
+                let obj ={
+                    __proto__:fun.prototype
+                }
+                fun.apply(obj,arguments);
+                return obj;
+            }
+            
+        }
+    
+        function person(name, age) {
+            this.name = name
+            this.age = age
+        }
+        let obj = _new(person)('LL', 100)
+        console.log(obj) //{name: 'LL', age: 100}
+    </script>
+</body>
+</html>
