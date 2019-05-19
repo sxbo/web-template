@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bind.js</title>
+</head>
+<body>
+    <div>bind.js</div>
+
+    <script>
+        //this
+        var a = {
+            b: function() {
+            console.log(this)
+            var _this = this; // 通过赋值的方式将this赋值给that
+            var func = function() {
+                console.log(this)
+                console.log(_this.c);
+            }
+            func();
+            },
+            c: 'hello',
+            d:{
+                e:function(){
+                    console.log(this)
+                }
+            }
+        }
+        a.b(); // hello
+        a.d.e();
+        console.log(a.c); // hello
+    function fun1 (){
+        this.name = "Aaa";
+        console.log(this); //window
+        function fun2(){
+            this.age = "12";
+            console.log(this); //window
+
+            function fun3() {
+                this.sex = "nan";
+                console.log(this) //window
+            }
+
+            fun3();
+        }
+        fun2();
+    }
+
+    fun1(); //无点.调用关系
+    
+    //bind 使用
+    var a = {
+        b: function() {
+            var func = function() {
+                console.log(this.c);
+            }.bind(this);
+            func();
+        },
+        c: 'hello'
+    }
+
+    a.b(); //hello
+    console.log(a.c); //hello
+
+    //使用2
+    var a = {
+        b: function() {
+            var func = function() {
+                console.log(this.c);
+            }
+
+            func.bind(this)();
+            // func();//只能在运行时绑定
+        },
+        c: "hello"
+    }
+
+    a.b()
+    console.log(a.c);
+
+    //使用3
+    var a = document.write;
+    // a("hello"); 需要绑定，否则找不到this
+    a.bind(document)('hello');
+    a.call(document, "hello");
+
+    //实现 1
+    /**
+     * context:需要绑定d到哪里
+     * **/
+    Function.prototype._bind = function(context) {
+        //这里边的this，是需要被绑定的内容，，一般是一个方法
+        var self = this;
+        return function() { //return出去
+            self.apply(context, arguments); //把context做为self的调用者，执行一次
+        }
+    }
+
+    delete a;
+    //example
+    function a() {
+        console.log(this.name);
+    }
+
+    a();// ""
+    var b = {
+        name: "apple"
+    }
+    a.bind(b)(); //apple
+    a._bind(b) //apple
+
+    </script>
+</body>
+</html>
