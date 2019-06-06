@@ -4,6 +4,6 @@ web template with webpack4.3.0， babel7，react16
 
 题目 | 地址
 --- | ---
-webpack官网： | www.webpakjs.com
-react中文社区： | www.reactjs.com
-Java | www.opcae.com
+webpack官网： | https://www.webpackjs.com/
+react中文社区： | https://react.docschina.org/
+Java | www.oracle.com
